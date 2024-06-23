@@ -8,7 +8,7 @@ const handleGame = async (ctx: Context) => {
         await ctx.answerGameQuery(`https://chewata-web.vercel.app/roulette/korki/?user_id=${100}`)
     }
 
-    if (cbk.game_short_name === 'chewata') {
+    if (cbk.game_short_name === 'levelup') {
         await ctx.answerGameQuery(`https://cactus-chewata.web.app?userID=123`)
     }
 
