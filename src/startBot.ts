@@ -13,16 +13,18 @@ export const startBot = async (ctx: Context) => {
     const inviter = message?.text?.split(" ")[1];
     // const inviterId = Number(inviter.trim())
 
+    var user = await userController.queryUser({ tgId: String(ctx.chat?.id) })
     
     //if user is invited
-    if (inviter) {
+    if (inviter && !user) {
         
         //increment refferal count for inviter
         await userController.increaseReferral({ tgId: inviter })
         
         //register the new user
         await userController.createUser({
-            tgId: String(ctx.chat?.id), invitedBy: inviter, isVerified: false
+            tgId: String(ctx.chat?.id), invitedBy: inviter, isVerified: false,
+            name: ctx.chat?.first_name+" "+ ctx.chat?.last_name
         })
         
         //redirect the new user to signup page
@@ -30,7 +32,6 @@ export const startBot = async (ctx: Context) => {
         
     }
     
-    var user = await userController.queryUser({ tgId: String(ctx.chat?.id) })
 
     if (user?.isVerified) {
         //redirect to main menu
