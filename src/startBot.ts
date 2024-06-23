@@ -19,7 +19,7 @@ export const startBot = async (ctx: Context) => {
     if (inviter && !user) {
         
         //increment refferal count for inviter
-        await userController.increaseReferral({ tgId: inviter })
+        await userController.increaseReferral({ tgId: inviter,name: ctx.chat?.first_name+" "+ ctx.chat?.last_name })
         
         //register the new user
         await userController.createUser({

@@ -17,7 +17,7 @@ export class UserController {
         const newUser = {
             name,
             phone,
-            credits: credits || 0,
+            credits: credits || 100,
             korkis: korkis || 0,
             language: language || 'en',
             referralCount: referralCount || 0,
