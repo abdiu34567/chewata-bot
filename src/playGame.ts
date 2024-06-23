@@ -1,9 +1,10 @@
 import { Context } from "telegraf";
-import { sendGame } from "./keyboards";
+import { sendGameChewata, sendGameLevelUp } from "./keyboards";
 
 
 const playGame = (ctx: Context) => {
-    ctx.replyWithGame("chewata", sendGame)
+    ctx.replyWithGame("levelup", sendGameLevelUp)
+    ctx.replyWithGame("korki", sendGameChewata)
 }
 
 

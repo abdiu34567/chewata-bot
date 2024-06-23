@@ -17,8 +17,12 @@ export const invite = (userId: number | string) => Markup.inlineKeyboard([
     Markup.button.url('✉️ Invite', `https://t.me/share/url?url=https://t.me/chewetaa_bot?start=${userId}`),
 ]);
 
-export const sendGame = Markup.inlineKeyboard([
+export const sendGameChewata = Markup.inlineKeyboard([
     Markup.button.game('Play Chewata')
+]);
+
+export const sendGameLevelUp = Markup.inlineKeyboard([
+    Markup.button.game('Play Levelup')
 ]);
 
 export const leaderboard = (userId: number | string) => Markup.inlineKeyboard([

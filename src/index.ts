@@ -38,6 +38,8 @@ connectToServer().then(() => {
         }
     });
 
+    // bot.launch();
+
 }).catch(console.error);
 
 // Enable graceful stop
