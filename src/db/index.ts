@@ -43,7 +43,7 @@ export class UserController {
     }
 
     public async increaseReferral(user: any) {
-        const { tgId, name } = user;
+        const { tgId } = user;
 
         if (!tgId) {
             return;
@@ -56,7 +56,6 @@ export class UserController {
                     $inc: { referralCount: 1 },
                     $setOnInsert: {
                         tgId: tgId,
-                        name,
                         dateJoined: new Date(),
                         isVerified: false
                     }
