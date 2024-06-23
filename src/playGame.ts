@@ -3,10 +3,13 @@ import { sendGameChewata, sendGameLevelUp } from "./keyboards";
 
 
 const playGame = (ctx: Context) => {
-    ctx.replyWithGame("chewata", sendGameLevelUp)
-    ctx.replyWithGame("chewata", sendGameChewata)
-    // ctx.replyWithGame("levelup", sendGameLevelUp)
-    // ctx.replyWithGame("korki", sendGameChewata)
+    //dev
+    // ctx.replyWithGame("chewata", sendGameLevelUp)
+    // ctx.replyWithGame("chewata", sendGameChewata)
+
+    //prod
+    ctx.replyWithGame("levelup", sendGameLevelUp)
+    ctx.replyWithGame("korki", sendGameChewata)
 }
 
 
