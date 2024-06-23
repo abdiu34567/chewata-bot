@@ -32,7 +32,11 @@ connectToServer().then(() => {
 
     bot.use(ctx => ctx.reply("Main Menu: ", mainMenu))
 
-    bot.launch();
+    bot.launch({
+        webhook: {
+            domain: 'https://chewata-bot-rv7c.vercel.app/'
+        }
+    });
 
 }).catch(console.error);
 
