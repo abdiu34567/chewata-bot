@@ -17,12 +17,6 @@ export class UserController {
         const newUser = {
             name,
             phone,
-            credits: credits || 100,
-            korkis: korkis || 0,
-            language: language || 'en',
-            referralCount: referralCount || 0,
-            playCount: playCount || 0,
-            isVerified: isVerified || false
         };
 
 
@@ -31,7 +25,16 @@ export class UserController {
                 { tgId: tgId },
                 {
                     $set: newUser,
-                    $setOnInsert: { tgId, dateJoined: new Date(), invitedBy }
+                    $setOnInsert: { tgId, 
+                        dateJoined: new Date(), 
+                        invitedBy, 
+                        referralCount: 0,
+                        playCount: 0, 
+                        isVerified: false,
+                        language: 'en',
+                        credits: 100,
+                        korkis: 0,
+                    }
                 },
                 { upsert: true }
             );
