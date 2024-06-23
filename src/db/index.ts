@@ -57,6 +57,7 @@ export class UserController {
                     $setOnInsert: {
                         tgId: tgId,
                         dateJoined: new Date(),
+                        isVerified: false
                     }
                 },
                 { upsert: true }
@@ -98,7 +99,12 @@ export class UserController {
         try {
             const result = await this.collection.updateOne(
                 { tgId: tgId },
-                { $inc: { playCount: 1 } },
+                { $inc: { playCount: 1 },
+                  $setOnInsert: {
+                    tgId: tgId,
+                    dateJoined: new Date(),
+                    isVerified: false
+                } },
                 { upsert: true }
             );
             return result
