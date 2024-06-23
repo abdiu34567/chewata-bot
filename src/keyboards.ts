@@ -14,7 +14,7 @@ export const mainMenu = Markup.keyboard([
 
 
 export const invite = (userId: number | string) => Markup.inlineKeyboard([
-    Markup.button.url('✉️ Invite', `https://t.me/share/url?url=https://t.me/chewetaa_bot?start=${userId}`),
+    Markup.button.url('✉️ Invite', `https://t.me/share/url?url=https://t.me/houseofchewataBot?start=${userId}`),
 ]);
 
 export const sendGameChewata = Markup.inlineKeyboard([
