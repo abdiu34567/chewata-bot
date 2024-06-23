@@ -10,6 +10,9 @@ import { mainMenu } from './keyboards';
 import inviteUser from './inviteUser';
 import playGame from './playGame';
 import handleGame from './handleGame';
+import sendLeaderboard from './sendLeaderboard';
+import sendInviteLeaderboard from './sendInviteLeaderboard';
+import settings from './settings';
 
 const bot = new Telegraf(process.env.BOT_TOKEN!);  // Make sure to have BOT_TOKEN in your .env file
 
@@ -21,6 +24,9 @@ connectToServer().then(() => {
 
     bot.hears("✉️ Invite", inviteUser)
     bot.hears("🎮 Play", playGame)
+    bot.hears("🏆 Leaderboard", sendLeaderboard)
+    bot.hears("👥🏅 InviteLeaderboard", sendInviteLeaderboard)
+    bot.hears("⚙️ Settings", settings)
 
     bot.gameQuery(handleGame)
 
