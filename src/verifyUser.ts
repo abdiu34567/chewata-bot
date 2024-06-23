@@ -15,7 +15,11 @@ const verifyUser = async (ctx: Context) => {
     const userController = new UserController(db);
     const message = ctx.message! as any
 
-    await userController.createUser({ tgId: String(ctx.chat?.id), phone: message.contact.phone_number, isVerified: true })
+    await userController.createUser({
+        tgId: String(ctx.chat?.id),
+        phone: message.contact.phone_number,
+        isVerified: true
+    })
 
     ctx.reply("Main Menu: ", mainMenu)
 

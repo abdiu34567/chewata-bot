@@ -34,5 +34,9 @@ export const inviteLeaderboard = (userId: number | string) => Markup.inlineKeybo
 
 export const setting = Markup.inlineKeyboard([
     Markup.button.callback('🗣️ Language', 'language'),
-    Markup.button.callback('🗺️', 'guide'),
+    Markup.button.callback('🗺️ Guide', 'guide'),
 ]);
+
+
+//korki => https://chewata-web.vercel.app/roulette/korki/?user_id={request.user.id}
+//chewata => https://cactus-chewata.web.app?userID=123

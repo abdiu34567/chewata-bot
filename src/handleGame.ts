@@ -3,8 +3,17 @@ import { getDb } from "./db/config";
 import { UserController } from "./db";
 
 const handleGame = async (ctx: Context) => {
-    await ctx.answerGameQuery(`https://chewata-web.vercel.app/roulette/korki/?user_id=${100}`)
+    const cbk = ctx.callbackQuery as { game_short_name: string }
+    if (cbk.game_short_name === 'korki') {
+        await ctx.answerGameQuery(`https://chewata-web.vercel.app/roulette/korki/?user_id=${100}`)
+    }
 
+    if (cbk.game_short_name === 'chewata') {
+        await ctx.answerGameQuery(`https://cactus-chewata.web.app?userID=123`)
+    }
+
+
+    //count total play clicks
     const db = getDb()
     const userController = new UserController(db);
     await userController.incrementPlayCount({ tgId: String(ctx.chat?.id) })
