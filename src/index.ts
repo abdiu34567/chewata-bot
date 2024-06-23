@@ -33,6 +33,7 @@ connectToServer().then(() => {
     bot.use(ctx => ctx.reply("Main Menu: ", mainMenu))
 
     bot.launch();
+
 }).catch(console.error);
 
 // Enable graceful stop

@@ -21,7 +21,7 @@
 		"typescript": "^5.4.5"
 	},
 	"scripts": {
-		"start": "node dist/src/index.js",
+		"start": "node dist/index.js",
 		"dev": "nodemon",
 		"test": "jest",
 		"build": "npm run clean && tsc",
