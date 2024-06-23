@@ -16,7 +16,9 @@ const handleGame = async (ctx: Context) => {
     //count total play clicks
     const db = getDb()
     const userController = new UserController(db);
-    await userController.incrementPlayCount({ tgId: String(ctx.chat?.id) })
+    await userController.incrementPlayCount({ tgId: String(ctx.chat?.id),
+        name: ctx.chat?.first_name+" "+ ctx.chat?.last_name 
+     })
 }
 
 

@@ -43,7 +43,7 @@ export class UserController {
     }
 
     public async increaseReferral(user: any) {
-        const { tgId } = user;
+        const { tgId, name } = user;
 
         if (!tgId) {
             return;
@@ -56,6 +56,7 @@ export class UserController {
                     $inc: { referralCount: 1 },
                     $setOnInsert: {
                         tgId: tgId,
+                        name,
                         dateJoined: new Date(),
                         isVerified: false
                     }
@@ -90,7 +91,7 @@ export class UserController {
     }
 
     public async incrementPlayCount(user: any) {
-        const { tgId } = user;
+        const { tgId, name } = user;
 
         if (!tgId) {
             return;
@@ -102,6 +103,7 @@ export class UserController {
                 { $inc: { playCount: 1 },
                   $setOnInsert: {
                     tgId: tgId,
+                    name,
                     dateJoined: new Date(),
                     isVerified: false
                 } },
