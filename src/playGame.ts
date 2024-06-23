@@ -9,7 +9,7 @@ const playGame = async (ctx: Context) => {
 
     //prod
     await ctx.replyWithGame("levelup", sendGameLevelUp)
-    await ctx.replyWithGame("korki", sendGameChewata)
+    // await ctx.replyWithGame("korki", sendGameChewata)
 }
 
 
