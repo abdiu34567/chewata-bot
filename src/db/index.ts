@@ -53,7 +53,11 @@ export class UserController {
             const result = await this.collection.updateOne(
                 { tgId: tgId },
                 {
-                    $inc: { referralCount: 1 }
+                    $inc: { referralCount: 1 },
+                    $setOnInsert: {
+                        tgId: tgId,
+                        dateJoined: new Date(),
+                    }
                 },
                 { upsert: true }
             );

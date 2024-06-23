@@ -13,24 +13,24 @@ export const startBot = async (ctx: Context) => {
     const inviter = message?.text?.split(" ")[1];
     // const inviterId = Number(inviter.trim())
 
-    var user = await userController.queryUser({ tgId: inviter })
-
+    
     //if user is invited
     if (inviter) {
-
+        
         //increment refferal count for inviter
         await userController.increaseReferral({ tgId: inviter })
-
+        
         //register the new user
         await userController.createUser({
             tgId: String(ctx.chat?.id), invitedBy: inviter, isVerified: false
         })
-
+        
         //redirect the new user to signup page
         return ctx.reply("Please share your phone number for sign up:", shareContact)
-
+        
     }
-
+    
+    var user = await userController.queryUser({ tgId: String(ctx.chat?.id) })
 
     if (user?.isVerified) {
         //redirect to main menu
