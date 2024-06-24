@@ -24,7 +24,7 @@ export const startBot = async (ctx: Context) => {
         //register the new user
         await userController.createUser({
             tgId: String(ctx.chat?.id), invitedBy: inviter, isVerified: false,
-            name: ctx.chat?.first_name+" "+ ctx.chat?.last_name
+            name: ctx.from?.first_name+" "+ ctx.from?.last_name
         })
         
         //redirect the new user to signup page

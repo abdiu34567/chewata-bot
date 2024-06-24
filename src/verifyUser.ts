@@ -18,7 +18,7 @@ const verifyUser = async (ctx: Context) => {
     await userController.createUser({
         tgId: String(ctx.chat?.id),
         phone: message.contact.phone_number,
-        name: ctx.chat?.first_name+" "+ ctx.chat?.last_name
+        name: ctx.from?.first_name+" "+ ctx.from?.last_name,
         isVerified: true
     })
 

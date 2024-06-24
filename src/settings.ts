@@ -1,10 +1,14 @@
 import { Context } from "telegraf";
-import { setting } from "./keyboards";
-
+import { setting, settingAmharic } from "./keyboards";
 
 const settings = async (ctx: Context) => {
-    await ctx.reply('Settings:\n\nCooming soon ...', setting)
-}
+  const message = ctx.message as { text: string };
+  const text = message.text;
+  if (text === "⚙️ ቅንጅቶች") {
+    return await ctx.reply("ቅንጅቶች:", settingAmharic);
+  }
 
+  await ctx.reply("Settings:", setting);
+};
 
-export default settings
+export default settings;

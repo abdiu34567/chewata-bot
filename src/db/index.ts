@@ -104,7 +104,7 @@ export class UserController {
                 { tgId: tgId },
                 { $inc: { playCount: 1 },
                   $setOnInsert: {
-                    tgId: tgId,
+                    tgId,
                     name,
                     dateJoined: new Date(),
                     isVerified: false
@@ -137,4 +137,5 @@ export class UserController {
             return null
         }
     }
+
 }
