@@ -52,13 +52,13 @@ connectToServer()
       await ctx.reply("Main Menu: ", mainMenu);
     });
 
-    // bot.launch({
-    //   webhook: {
-    //     domain: "https://chewata-bot-rv7c.vercel.app/",
-    //   },
-    // });
+    bot.launch({
+      webhook: {
+        domain: "https://chewata-bot-rv7c.vercel.app/",
+      },
+    });
 
-    bot.launch();
+    // bot.launch();
   })
   .catch(console.error);
 

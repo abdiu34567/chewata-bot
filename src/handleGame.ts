@@ -3,7 +3,6 @@ import { getDb } from "./db/config";
 import { UserController } from "./db";
 
 const handleGame = async (ctx: Context) => {
-  console.log("handle game");
   const cbk = ctx.callbackQuery as { game_short_name: string };
   if (cbk.game_short_name === "korki") {
     await ctx.answerGameQuery(
