@@ -33,6 +33,7 @@ connectToServer()
       sendInviteLeaderboard
     );
     bot.hears(["⚙️ Settings", "⚙️ ቅንጅቶች"], settings);
+    bot.gameQuery(handleGame);
 
     bot.action(["language", "ቋንቋ"], sendLanguages);
     bot.action(["am", "አማርኛ"], translateToAmharic);
@@ -40,8 +41,6 @@ connectToServer()
     bot.action(["guide", "መመሪያ"], guideManager);
     bot.action(["korki-am", "korki"], korkiGuide);
     bot.action(["levelup-am", "levelup"], levelupGuide);
-
-    bot.gameQuery(handleGame);
 
     //TODO: Detect amharic
     bot.use(async (ctx) => {
@@ -53,13 +52,13 @@ connectToServer()
       await ctx.reply("Main Menu: ", mainMenu);
     });
 
-    bot.launch({
-      webhook: {
-        domain: "https://chewata-bot-rv7c.vercel.app/",
-      },
-    });
+    // bot.launch({
+    //   webhook: {
+    //     domain: "https://chewata-bot-rv7c.vercel.app/",
+    //   },
+    // });
 
-    // bot.launch();
+    bot.launch();
   })
   .catch(console.error);
 
