@@ -21,6 +21,21 @@ const bot = new Telegraf(process.env.BOT_TOKEN!); // Make sure to have BOT_TOKEN
 // Connect to MongoDB before starting the bot
 connectToServer()
   .then(() => {
+    bot.use((ctx, next) => {
+      const notifierGroupID = process.env.GROUP_NOTIFIER_ID as string;
+      const chatId = String(ctx.message?.chat.id);
+
+      //limit the bot from disturbing the Group
+      if (chatId == notifierGroupID) {
+        return;
+      }
+
+      // console.log(ctx.message);
+      return next();
+    });
+
+    // bot.command("/notify", async (ctx) => {});
+
     bot.start(startBot);
 
     bot.on("contact", verifyUser);
