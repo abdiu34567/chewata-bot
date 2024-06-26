@@ -23,14 +23,13 @@ connectToServer()
   .then(() => {
     bot.use((ctx, next) => {
       const notifierGroupID = process.env.GROUP_NOTIFIER_ID as string;
-      const chatId = String(ctx.message?.chat.id);
+      const chatId = String(ctx.message?.chat.id || ctx.editedMessage?.chat.id);
 
       //limit the bot from disturbing the Group
       if (chatId == notifierGroupID) {
         return;
       }
 
-      // console.log(ctx.message);
       return next();
     });
 
