@@ -14,14 +14,14 @@ import settings from "./settings";
 import { sendLanguages } from "./sendLanguages";
 import { translateToAmharic, translateToEnglish } from "./translate";
 import { guideManager, korkiGuide, levelupGuide } from "./guideManager";
-import { getLanguage } from "./utils";
+import { deleter, getLanguage } from "./utils";
 
 const bot = new Telegraf(process.env.BOT_TOKEN!); // Make sure to have BOT_TOKEN in your .env file
 
 // Connect to MongoDB before starting the bot
 connectToServer()
   .then(() => {
-    bot.use((ctx, next) => {
+    bot.use(async (ctx, next) => {
       const notifierGroupID = process.env.GROUP_NOTIFIER_ID as string;
       const chatId = String(ctx.message?.chat.id || ctx.editedMessage?.chat.id);
 
@@ -72,7 +72,7 @@ connectToServer()
       },
     });
 
-    // bot.launch();
+    bot.launch();
   })
   .catch(console.error);
 
