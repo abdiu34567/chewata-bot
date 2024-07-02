@@ -67,7 +67,7 @@ connectToServer()
       // const inviterId = Number(inviter.trim())
 
       var user = await userController.queryUser({ tgId: String(ctx.chat?.id) });
-      if (!user) {
+      if (!user || !user?.phone) {
         return ctx.reply(
           "Please share your phone number for sign up:",
           shareContact
