@@ -5,7 +5,7 @@ import { Telegraf } from "telegraf";
 import { connectToServer, getDb } from "./db/config";
 import { startBot } from "./startBot";
 import verifyUser from "./verifyUser";
-import { mainMenu, mainMenuAmharic } from "./keyboards";
+import { mainMenu, mainMenuAmharic, shareContact } from "./keyboards";
 import inviteUser from "./inviteUser";
 import playGame from "./playGame";
 import handleGame from "./handleGame";
@@ -15,6 +15,7 @@ import { sendLanguages } from "./sendLanguages";
 import { translateToAmharic, translateToEnglish } from "./translate";
 import { guideManager, korkiGuide, levelupGuide } from "./guideManager";
 import { deleter, getLanguage } from "./utils";
+import { UserController } from "./db";
 
 const bot = new Telegraf(process.env.BOT_TOKEN!); // Make sure to have BOT_TOKEN in your .env file
 
@@ -60,6 +61,21 @@ connectToServer()
 
     //TODO: Detect amharic
     bot.use(async (ctx) => {
+      //check if user is registered already
+      const db = getDb();
+      const userController = new UserController(db);
+      // const inviterId = Number(inviter.trim())
+
+      var user = await userController.queryUser({ tgId: String(ctx.chat?.id) });
+      if (!user) {
+        return ctx.reply(
+          "Please share your phone number for sign up:",
+          shareContact
+        );
+      }
+
+      // console.log("user: ", user);
+
       const language = await getLanguage(String(ctx.chat?.id));
       if (language === "am") {
         return await ctx.reply("ዋና ምናሌ", mainMenuAmharic);
