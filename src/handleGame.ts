@@ -1,6 +1,7 @@
 import { Context } from "telegraf";
 import { getDb } from "./db/config";
 import { UserController } from "./db";
+import recordDataToSheet from "./Api/sheetApiConfig";
 
 const handleGame = async (ctx: Context) => {
   const cbk = ctx.callbackQuery as { game_short_name: string };
@@ -17,10 +18,12 @@ const handleGame = async (ctx: Context) => {
   //count total play clicks
   const db = getDb();
   const userController = new UserController(db);
-  await userController.incrementPlayCount({
+  const res = await userController.incrementPlayCount({
     tgId: String(ctx.chat?.id),
     name: ctx.from?.first_name + " " + ctx.from?.last_name,
   });
+
+  recordDataToSheet(res!);
 };
 
 export default handleGame;

@@ -31,7 +31,7 @@ export class UserController {
     };
 
     try {
-      const result = await this.collection.updateOne(
+      const result = await this.collection.findOneAndUpdate(
         { tgId: tgId },
         {
           $set: newUser,
@@ -47,7 +47,10 @@ export class UserController {
             korkis: 0,
           },
         },
-        { upsert: true }
+        {
+          returnDocument: "after",
+          upsert: true,
+        }
       );
       return result;
     } catch (e: any) {
@@ -64,7 +67,7 @@ export class UserController {
     }
 
     try {
-      const result = await this.collection.updateOne(
+      const result = await this.collection.findOneAndUpdate(
         { tgId: tgId },
         {
           $inc: { referralCount: 1 },
@@ -74,7 +77,7 @@ export class UserController {
             isVerified: false,
           },
         },
-        { upsert: true }
+        { returnDocument: "after", upsert: true }
       );
       return result;
     } catch (e: any) {
@@ -111,7 +114,7 @@ export class UserController {
     }
 
     try {
-      const result = await this.collection.updateOne(
+      const result = await this.collection.findOneAndUpdate(
         { tgId: tgId },
         {
           $inc: { playCount: 1 },
@@ -122,7 +125,7 @@ export class UserController {
             isVerified: false,
           },
         },
-        { upsert: true }
+        { returnDocument: "after", upsert: true }
       );
       return result;
     } catch (e: any) {

@@ -22,6 +22,8 @@ const bot = new Telegraf(process.env.BOT_TOKEN!); // Make sure to have BOT_TOKEN
 connectToServer()
   .then(() => {
     bot.use(async (ctx, next) => {
+      // console.log(ctx.message);
+
       const notifierGroupID = process.env.GROUP_NOTIFIER_ID as string;
       const chatId = String(ctx.message?.chat.id || ctx.editedMessage?.chat.id);
 
