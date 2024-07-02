@@ -59,6 +59,36 @@ export class UserController {
     }
   }
 
+  public async verifyUser(user: any) {
+    const { tgId, phone } = user;
+
+    if (!tgId) {
+      return null;
+    }
+
+    const verifyUser = {
+      phone,
+      isVerified: true,
+    };
+
+    try {
+      const result = await this.collection.findOneAndUpdate(
+        { tgId: tgId },
+        {
+          $set: verifyUser,
+        },
+        {
+          returnDocument: "after",
+          upsert: true,
+        }
+      );
+      return result;
+    } catch (e: any) {
+      console.log(e.message);
+      return null;
+    }
+  }
+
   public async increaseReferral(user: any) {
     const { tgId } = user;
 
