@@ -23,6 +23,8 @@ const handleGame = async (ctx: Context) => {
     name: ctx.from?.first_name + " " + ctx.from?.last_name,
   });
 
+  console.log(res);
+
   recordDataToSheet(res!);
 };
 
