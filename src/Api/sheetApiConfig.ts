@@ -23,7 +23,6 @@ function recordDataToSheet(obj: any) {
     // authKey: process.env.SHEET_AUTH_KEY,
     tgId: obj.tgId,
     userData: [
-      obj._id,
       obj.tgId,
       obj.credits,
       obj.dateJoined,
