@@ -37,7 +37,6 @@ connectToServer()
     });
 
     // bot.command("/notify", async (ctx) => {});
-
     bot.start(startBot);
 
     bot.on("contact", verifyUser);
