@@ -7,16 +7,19 @@ export const shareContact = Markup.keyboard([
   .oneTime()
   .resize();
 
+//"🏆 Leaderboard"
+//"🏆 መሪ ሰሌዳ"
+
 export const mainMenuAmharic = Markup.keyboard([
-  ["🎮 ተጫወት", "🏆 መሪ ሰሌዳ"],
-  ["✉️ ጋብዝ", "👥🏅 የጋባዦች መሪ ሰሌዳ"],
-  ["⚙️ ቅንጅቶች"],
+  ["🎮 ተጫወት", "✉️ ጋብዝ"],
+  ["⚙️ ቅንጅቶች", "👥🏅 የጋባዦች መሪ ሰሌዳ"],
+  ["📜 ውሎች እና ሁኔታዎች"],
 ]);
 
 export const mainMenu = Markup.keyboard([
-  ["🎮 Play", "🏆 Leaderboard"],
-  ["✉️ Invite", "👥🏅 InviteLeaderboard"],
-  ["⚙️ Settings"],
+  ["🎮 Play", "✉️ Invite"],
+  ["⚙️ Settings", "👥🏅 InviteLeaderboard"],
+  ["📜Terms & Conditions"],
 ]);
 
 export const inviteAmharic = (userId: number | string) =>

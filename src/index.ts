@@ -16,6 +16,7 @@ import { translateToAmharic, translateToEnglish } from "./translate";
 import { guideManager, korkiGuide, levelupGuide } from "./guideManager";
 import { deleter, getLanguage } from "./utils";
 import { UserController } from "./db";
+import termsAndConditions from "./termsAndConditions";
 
 const bot = new Telegraf(process.env.BOT_TOKEN!); // Make sure to have BOT_TOKEN in your .env file
 
@@ -49,6 +50,8 @@ connectToServer()
       sendInviteLeaderboard
     );
     bot.hears(["⚙️ Settings", "⚙️ ቅንጅቶች"], settings);
+    bot.hears(["📜Terms & Conditions", "📜 ውሎች እና ሁኔታዎች"], termsAndConditions);
+
     bot.gameQuery(handleGame);
 
     bot.action(["language", "ቋንቋ"], sendLanguages);
