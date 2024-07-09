@@ -16,19 +16,17 @@ const termsAndConditions = async (ctx: Context) => {
       `ቦቱን ለማንኛውም ህገወጥ ተግባራት ላለመጠቀም፣ሌሎችን ለማስመሰል፣አጸያፊ ይዘት ላለማጋራት ወይም የቦት አገልግሎቶችን ላለማደናቀፍ ተስማምተሃል።\n\n` +
       `<b>5. አእምሯዊ ንብረት፡-</b>\n` +
       `በቦት ውስጥ ያሉት ሁሉም ይዘቶች የ Chewata House ወይም የፍቃድ ሰጪዎቹ ናቸው። ያለፈቃድ ማንኛውንም ይዘት አያባዙ ወይም አያሰራጩ።\n\n` +
-      `<b>6. የግላዊነት ፖሊሲ፡-</b>\n` +
-      `የእርስዎን የግል መረጃ እንዴት እንደምንይዝ ለዝርዝሮች የእኛን [የግላዊነት መመሪያ](የግላዊነት መመሪያን አገናኝ) ይመልከቱ።\n\n` +
-      `<b>7. የተጠያቂነት ገደብ፡-</b>\n` +
+      `<b>6. የተጠያቂነት ገደብ፡-</b>\n` +
       `Chewata ቤት የቀረበው "እንደሆነ" ነው. በአጠቃቀሙ ለሚነሱ ጉዳዮች ተጠያቂ አይደለንም።\n\n` +
-      `<b>8. ማካካሻ፡-</b>\n` +
+      `<b>7. ማካካሻ፡-</b>\n` +
       `እርስዎ ከቦት አጠቃቀምዎ ጋር በተያያዙ ማናቸውም የይገባኛል ጥያቄዎች የ Chewata ቤትን ለመከላከል እና ለመካስ ተስማምተዋል።\n\n` +
-      `<b>9. ሽልማቶች እና ማስተዋወቂያዎች፡-</b>\n` +
+      `<b>8. ሽልማቶች እና ማስተዋወቂያዎች፡-</b>\n` +
       `አሸናፊዎች የግል ዝርዝሮችን እንዲያቀርቡ እና ሽልማቶችን ለመሰብሰብ በአካል ተገኝተው ሊጠየቁ ይችላሉ። አለማክበር ኪሳራ ሊያስከትል ይችላል.\n\n` +
-      `<b>10. መቋረጥ፡</b>\n` +
+      `<b>9. መቋረጥ፡</b>\n` +
       `እነዚህን ውሎች በመጣስ በማንኛውም ጊዜ የቦቱን መዳረሻ የማቋረጥ መብታችን የተጠበቀ ነው።\n\n` +
-      `<b>11. በውሎች ላይ የተደረጉ ለውጦች፡-</b>\n` +
+      `<b>10. በውሎች ላይ የተደረጉ ለውጦች፡-</b>\n` +
       `እነዚህን ውሎች እናዘምነዋለን እና ለውጦችን በbot እናሳውቀዎታለን። ከለውጦች በኋላ መጠቀም የቀጠለ ማለት አዲሶቹን ውሎች ይቀበላሉ ማለት ነው።\n\n` +
-      `<b>12. የአስተዳደር ህግ፡-</b>\n` +
+      `<b>11. የአስተዳደር ህግ፡-</b>\n` +
       `እነዚህ ውሎች የሚተዳደሩት በኢትዮጵያ ህግጋት ሲሆን አለመግባባቶች በኢትዮጵያ ፍርድ ቤቶች ይፈታሉ ።\n\n`;
 
     return await ctx.replyWithHTML(TAC_Amharic);
@@ -45,19 +43,17 @@ const termsAndConditions = async (ctx: Context) => {
     "You agree not to use the bot for any illegal activities, impersonate others, share offensive content, or attempt to disrupt the bot’s services.\n\n" +
     "<b>5. Intellectual Property:</b>\n" +
     "All content within the bot is owned by House of Chewata or its licensors. Do not reproduce or distribute any content without permission.\n\n" +
-    "<b>6. Privacy Policy:</b>\n" +
-    "Refer to our [Privacy Policy](link to privacy policy) for details on how we handle your personal information.\n\n" +
-    "<b>7. Limitation of Liability:</b>\n" +
+    "<b>6. Limitation of Liability:</b>\n" +
     'House of Chewata is provided "as is." We are not liable for issues arising from its use.\n\n' +
-    "<b>8. Indemnification:</b>\n" +
+    "<b>7. Indemnification:</b>\n" +
     "You agree to defend and indemnify House of Chewata against any claims related to your use of the bot.\n\n" +
-    "<b>9. Prizes and Promotions:</b>\n" +
+    "<b>8. Prizes and Promotions:</b>\n" +
     "Winners may be required to provide personal details and appear in person to collect prizes. Failure to comply may result in forfeiture.\n\n" +
-    "<b>10. Termination:</b>\n" +
+    "<b>9. Termination:</b>\n" +
     "We reserve the right to terminate your access to the bot at any time for violating these terms.\n\n" +
-    "<b>11. Changes to Terms:</b>\n" +
+    "<b>10. Changes to Terms:</b>\n" +
     "We may update these terms and will notify you of changes through the bot. Continued use after changes means you accept the new terms.\n\n" +
-    "<b>12. Governing Law:</b>\n" +
+    "<b>11. Governing Law:</b>\n" +
     "These terms are governed by the laws of Ethiopia, and disputes will be resolved in Ethiopian courts.\n\n";
   await ctx.replyWithHTML(TAC_English);
 };
