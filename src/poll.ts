@@ -111,7 +111,10 @@ export const save4rdQuestion = async (ctx: Context) => {
     choice: forthQues.split("-")[1],
   });
 
-  await ctx.editMessageText("✅ Done", { parse_mode: "HTML" });
+  await ctx.editMessageText(
+    "🎉 Thank you for participating in our European 2024 Finale poll with House of Chewata! 🎉",
+    { parse_mode: "HTML" }
+  );
 
   console.log(forthQues);
 };
