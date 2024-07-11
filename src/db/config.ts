@@ -11,12 +11,6 @@ export const connectToServer = async (): Promise<void> => {
     await client.connect();
     dbInstance = client.db(process.env.DB_NAME);
     console.log("Connected to MongoDB");
-
-    // Ensure unique index on tgId
-    await dbInstance
-      .collection("users")
-      .createIndex({ tgId: 1 }, { unique: true });
-    console.log("Ensured unique index on tgId");
   } catch (error) {
     console.error("Could not connect to MongoDB:", error);
     process.exit(1);

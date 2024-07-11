@@ -110,3 +110,45 @@ export const games = Markup.inlineKeyboard([
 
 //korki => https://chewata-web.vercel.app/roulette/korki/?user_id={request.user.id}
 //chewata => https://cactus-chewata.web.app?userID=123
+
+//polll
+export const Ques1 = Markup.inlineKeyboard([
+  Markup.button.callback("A", "Spain"),
+  Markup.button.callback("B", "England"),
+]);
+
+export const Ques2 = Markup.inlineKeyboard([
+  [
+    Markup.button.callback("A", "spain-0"),
+    Markup.button.callback("B", "spain-1"),
+    Markup.button.callback("C", "spain-2"),
+  ],
+  [
+    Markup.button.callback("D", "spain-3"),
+    Markup.button.callback("E", "spain-4"),
+    Markup.button.callback("F", "spain-5"),
+  ],
+]);
+
+export const Ques3 = Markup.inlineKeyboard([
+  [
+    Markup.button.callback("A", "england-1"),
+    Markup.button.callback("B", "england-2"),
+    Markup.button.callback("C", "england-3"),
+  ],
+  [
+    Markup.button.callback("D", "england-4"),
+    Markup.button.callback("E", "england-5"),
+    Markup.button.callback("F", "england-6"),
+  ],
+]);
+
+export const Ques4 = Markup.inlineKeyboard([
+  Markup.button.callback("A", "3-yes"),
+  Markup.button.callback("B", "3-no"),
+]);
+
+export const Ques5 = Markup.inlineKeyboard([
+  Markup.button.callback("A", "4-yes"),
+  Markup.button.callback("B", "4-no"),
+]);

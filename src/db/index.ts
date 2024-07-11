@@ -5,6 +5,7 @@ export class UserController {
 
   constructor(db: Db) {
     this.collection = db.collection("users");
+    this.collection.createIndex({ tgId: 1 }, { unique: true });
   }
 
   public async createUser(user: any) {
