@@ -35,6 +35,9 @@ export class PollController {
       const result = await this.collection.findOneAndUpdate(
         { tgId: tgId },
         {
+          $setOnInsert: {
+            tgId,
+          },
           $push: { poll: { question, choice } },
         } as any,
         { returnDocument: "after", upsert: true }
