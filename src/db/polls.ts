@@ -18,7 +18,7 @@ export class PollController {
   constructor(db: Db) {
     this.collection = db.collection<PollDocument>("polls");
     // Ensure unique index on tgId for this collection
-    this.collection.createIndex({ pollId: 1 }, { unique: true });
+    this.collection.createIndex({ tgId: 1 }, { unique: true });
   }
   public async setPollResult(user: {
     tgId: string;
