@@ -144,11 +144,11 @@ export const Ques3 = Markup.inlineKeyboard([
 ]);
 
 export const Ques4 = Markup.inlineKeyboard([
-  Markup.button.callback("A", "3-yes"),
-  Markup.button.callback("B", "3-no"),
+  Markup.button.callback("A", "4-yes"),
+  Markup.button.callback("B", "4-no"),
 ]);
 
 export const Ques5 = Markup.inlineKeyboard([
-  Markup.button.callback("A", "4-yes"),
-  Markup.button.callback("B", "4-no"),
+  Markup.button.callback("A", "5-yes"),
+  Markup.button.callback("B", "5-no"),
 ]);

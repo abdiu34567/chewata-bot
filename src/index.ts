@@ -70,8 +70,8 @@ connectToServer()
       saveClubScoreEngland
     );
 
-    bot.action(["3-yes", "3-no"], save3rdQuestion);
-    bot.action(["4-yes", "4-no"], save4rdQuestion);
+    bot.action(["4-yes", "4-no"], save3rdQuestion);
+    bot.action(["5-yes", "5-no"], save4rdQuestion);
 
     bot.hears(["✉️ Invite", "✉️ ጋብዝ"], inviteUser);
     bot.hears(["🎮 Play", "🎮 ተጫወት"], playGame);
