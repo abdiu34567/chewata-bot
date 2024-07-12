@@ -62,11 +62,11 @@ connectToServer()
     //poll
     bot.action(["Spain", "England"], saveClub);
     bot.action(
-      ["spain-1", "spain-2", "spain-3", "spain-4", "spain-5"],
+      ["spain-0", "spain-1", "spain-2", "spain-3", "spain-4"],
       saveClubScoreSpain
     );
     bot.action(
-      ["england-1", "england-2", "england-3", "england-4", "england-5"],
+      ["england-0", "england-1", "england-2", "england-3", "england-4"],
       saveClubScoreEngland
     );
 

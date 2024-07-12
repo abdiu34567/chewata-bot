@@ -132,14 +132,14 @@ export const Ques2 = Markup.inlineKeyboard([
 
 export const Ques3 = Markup.inlineKeyboard([
   [
-    Markup.button.callback("A", "england-1"),
-    Markup.button.callback("B", "england-2"),
-    Markup.button.callback("C", "england-3"),
+    Markup.button.callback("A", "england-0"),
+    Markup.button.callback("B", "england-1"),
+    Markup.button.callback("C", "england-2"),
   ],
   [
-    Markup.button.callback("D", "england-4"),
-    Markup.button.callback("E", "england-5"),
-    Markup.button.callback("F", "england-6"),
+    Markup.button.callback("D", "england-3"),
+    Markup.button.callback("E", "england-4"),
+    Markup.button.callback("F", "england-5"),
   ],
 ]);
 
