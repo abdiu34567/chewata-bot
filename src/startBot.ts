@@ -5,23 +5,28 @@ import { UserController } from "./db";
 import recordDataToSheet, { UserData } from "./Api/sheetApiConfig";
 import { text } from "stream/consumers";
 import { verifyMyUser } from "./verifyUser";
+import { PollController } from "./db/polls";
 
 export const startBot = async (ctx: Context) => {
   //check if user is here for the first time
   const db = getDb();
-  const userController = new UserController(db);
 
   const message = ctx.message as { text: string };
   const inviter = message?.text?.split(" ")[1];
 
   if (inviter && inviter.includes("poll")) {
-    return await ctx.replyWithHTML(
-      "<b>Who do you think will win?</b>\n\n (A) <i>Spain</i> \n (B) <i>England</i>",
-      Ques1
-    );
+    const pollCOntroller = new PollController(db);
+    const poll = await pollCOntroller.queryUser({ tgId: String(ctx.from?.id) });
+    if (!poll) {
+      return await ctx.replyWithHTML(
+        "<b>Who do you think will win?</b>\n\n (A) <i>Spain</i> \n (B) <i>England</i>",
+        Ques1
+      );
+    }
   }
   // const inviterId = Number(inviter.trim())
 
+  const userController = new UserController(db);
   var user = await userController.queryUser({ tgId: String(ctx.chat?.id) });
 
   //if user is invited

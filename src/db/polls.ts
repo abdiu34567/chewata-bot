@@ -48,4 +48,24 @@ export class PollController {
       return null;
     }
   }
+
+  public async queryUser(user: any) {
+    const { tgId } = user;
+
+    if (!tgId) {
+      return;
+    }
+
+    try {
+      const user = await this.collection.findOne({ tgId });
+      if (user) {
+        return user;
+      } else {
+        return null;
+      }
+    } catch (e: any) {
+      console.log(e.message);
+      return null;
+    }
+  }
 }

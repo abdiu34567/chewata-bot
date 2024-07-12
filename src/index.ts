@@ -94,12 +94,6 @@ connectToServer()
 
     //TODO: Detect amharic
     bot.use(async (ctx) => {
-      //sent from GAS
-      //   return await ctx.replyWithHTML(
-      //     "<b>Who do you think will win?</b>\n\n (A) <i>Spain</i> \n (B) <i>England</i>",
-      //     Ques1
-      //   );
-
       //check if user is registered already
       const db = getDb();
       const userController = new UserController(db);
