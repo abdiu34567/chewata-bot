@@ -60,18 +60,18 @@ connectToServer()
     bot.on("contact", verifyUser);
 
     //poll
-    bot.action(["Spain", "England"], saveClub);
-    bot.action(
-      ["spain-0", "spain-1", "spain-2", "spain-3", "spain-4"],
-      saveClubScoreSpain
-    );
-    bot.action(
-      ["england-0", "england-1", "england-2", "england-3", "england-4"],
-      saveClubScoreEngland
-    );
+    // bot.action(["Spain", "England"], saveClub);
+    // bot.action(
+    //   ["spain-0", "spain-1", "spain-2", "spain-3", "spain-4"],
+    //   saveClubScoreSpain
+    // );
+    // bot.action(
+    //   ["england-0", "england-1", "england-2", "england-3", "england-4"],
+    //   saveClubScoreEngland
+    // );
 
-    bot.action(["4-yes", "4-no"], save3rdQuestion);
-    bot.action(["5-yes", "5-no"], save4rdQuestion);
+    // bot.action(["4-yes", "4-no"], save3rdQuestion);
+    // bot.action(["5-yes", "5-no"], save4rdQuestion);
 
     bot.hears(["✉️ Invite", "✉️ ጋብዝ"], inviteUser);
     bot.hears(["🎮 Play", "🎮 ተጫወት"], playGame);
