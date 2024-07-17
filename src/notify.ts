@@ -8,7 +8,7 @@ import { connectToServer, getDb } from "./db/config";
 // import { connectToServer, getDb } from "./db/config";
 
 async function notifyUsers() {
-  //   await connectToServer();
+  // await connectToServer();
   // console.log("hello");
   //check if user is here for the first time
   const db = getDb();
