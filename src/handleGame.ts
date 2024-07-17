@@ -15,11 +15,8 @@ const handleGame = async (ctx: Context) => {
     await ctx.answerGameQuery(`https://cactus-chewata.web.app?userID=123`);
   }
 
-  //count total play clicks
-  const db = getDb();
-
   const name = ctx.from?.first_name + " " + ctx.from?.last_name || "";
-  await recordPlay(String(ctx.from?.id), name, db);
+  await recordPlay(String(ctx.from?.id), name);
 
   //   const userController = new UserController(db);
   //   const res = await userController.incrementPlayCount({
@@ -33,9 +30,11 @@ const handleGame = async (ctx: Context) => {
 };
 
 // Function to record a play and calculate score
-async function recordPlay(tgId: string, name: string, db: any) {
+async function recordPlay(tgId: string, name: string) {
   const now = new Date();
   const minTimeBetweenPlays = 5 * 60 * 1000; // 5 minutes in milliseconds
+  //count total play clicks
+  const db = getDb();
   const collection = db.collection("users");
 
   // Find the player's document
@@ -78,8 +77,8 @@ async function recordPlay(tgId: string, name: string, db: any) {
       );
 
       return {
-        playCount: updatedPlayer.playCount,
-        score: updatedPlayer.score,
+        playCount: updatedPlayer!.playCount,
+        score: updatedPlayer!.score,
       };
     } else {
       // Only update playCount if the cooldown period hasn't passed
