@@ -12,13 +12,13 @@ export const shareContact = Markup.keyboard([
 
 export const mainMenuAmharic = Markup.keyboard([
   ["🎮 ተጫወት", "✉️ ጋብዝ"],
-  ["⚙️ ቅንጅቶች", "👥🏅 የጋባዦች መሪ ሰሌዳ"],
+  ["⚙️ ቅንጅቶች", "👥🏅 የመሪዎች ሰሌዳ ጨዋታ"],
   ["📜 ውሎች እና ሁኔታዎች"],
 ]);
 
 export const mainMenu = Markup.keyboard([
   ["🎮 Play", "✉️ Invite"],
-  ["⚙️ Settings", "👥🏅 InviteLeaderboard"],
+  ["⚙️ Settings", "👥🏅 Play Leaderboard"],
   ["📜Terms & Conditions"],
 ]);
 
