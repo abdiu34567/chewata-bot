@@ -5,15 +5,7 @@ import { Telegraf } from "telegraf";
 import { connectToServer, getDb } from "./db/config";
 import { startBot } from "./startBot";
 import verifyUser from "./verifyUser";
-import {
-  mainMenu,
-  mainMenuAmharic,
-  Ques1,
-  Ques2,
-  Ques3,
-  Ques4,
-  shareContact,
-} from "./keyboards";
+import { mainMenu, mainMenuAmharic, shareContact } from "./keyboards";
 import inviteUser from "./inviteUser";
 import playGame from "./playGame";
 import handleGame from "./handleGame";
@@ -22,18 +14,9 @@ import settings from "./settings";
 import { sendLanguages } from "./sendLanguages";
 import { translateToAmharic, translateToEnglish } from "./translate";
 import { guideManager, korkiGuide, levelupGuide } from "./guideManager";
-import { deleter, getLanguage } from "./utils";
+import { getLanguage } from "./utils";
 import { UserController } from "./db";
 import termsAndConditions from "./termsAndConditions";
-import { PollController } from "./db/polls";
-import { ExtraPoll } from "telegraf/typings/telegram-types";
-import {
-  save3rdQuestion,
-  save4rdQuestion,
-  saveClub,
-  saveClubScoreEngland,
-  saveClubScoreSpain,
-} from "./poll";
 
 const bot = new Telegraf(process.env.BOT_TOKEN!); // Make sure to have BOT_TOKEN in your .env file
 
@@ -58,20 +41,6 @@ connectToServer()
     bot.start(startBot);
 
     bot.on("contact", verifyUser);
-
-    //poll
-    // bot.action(["Spain", "England"], saveClub);
-    // bot.action(
-    //   ["spain-0", "spain-1", "spain-2", "spain-3", "spain-4"],
-    //   saveClubScoreSpain
-    // );
-    // bot.action(
-    //   ["england-0", "england-1", "england-2", "england-3", "england-4"],
-    //   saveClubScoreEngland
-    // );
-
-    // bot.action(["4-yes", "4-no"], save3rdQuestion);
-    // bot.action(["5-yes", "5-no"], save4rdQuestion);
 
     bot.hears(["✉️ Invite", "✉️ ጋብዝ"], inviteUser);
     bot.hears(["🎮 Play", "🎮 ተጫወት"], playGame);
