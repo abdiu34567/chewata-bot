@@ -71,15 +71,12 @@ async function recordPlay(userId: string, name: string) {
         console.log("less than 2 hours");
         // Within the 2-hour window
         const weightedScoreIncrement = Math.min(
-          Math.floor(timeSinceLastPlay / (60 * 60 * 1000)),
-          2
+          Math.floor(timeSinceLastPlay / (3 * 60 * 1000)),
+          3
         ); // Cap at 2, integer value
         newScore = player.score + weightedScoreIncrement;
         newWindowStartTime = player.windowStartTime;
       }
-
-      console.log("old score", player.score);
-      console.log("newScore: ", newScore);
 
       // Update player stats
       const updatedPlayer = await collection.findOneAndUpdate(
