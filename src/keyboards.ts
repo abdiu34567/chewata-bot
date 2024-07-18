@@ -66,7 +66,7 @@ export const inviteLeaderboard = (userId: number | string) =>
   Markup.inlineKeyboard([
     Markup.button.url(
       "👥🏅 Play Leaderboard:",
-      `https://invite-leaderboard.vercel.app/`
+      `https://invite-leaderboard.vercel.app/${userId}`
     ),
   ]);
 
