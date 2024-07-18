@@ -78,6 +78,9 @@ async function recordPlay(userId: string, name: string) {
         newWindowStartTime = player.windowStartTime;
       }
 
+      console.log("old score", player.score);
+      console.log("newScore: ", newScore);
+
       // Update player stats
       const updatedPlayer = await collection.findOneAndUpdate(
         { tgId: userId },
