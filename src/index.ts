@@ -46,7 +46,7 @@ connectToServer()
     bot.hears(["🎮 Play", "🎮 ተጫወት"], playGame);
     bot.hears(["🏆 Leaderboard", "🏆 መሪ ሰሌዳ"], sendLeaderboard);
     bot.hears(
-      ["👥🏅 InviteLeaderboard", "👥🏅 የጋባዦች መሪ ሰሌዳ"],
+      ["👥🏅 Play Leaderboard", "👥🏅 የመሪዎች ሰሌዳ ጨዋታ"],
       sendInviteLeaderboard
     );
     bot.hears(["⚙️ Settings", "⚙️ ቅንጅቶች"], settings);
