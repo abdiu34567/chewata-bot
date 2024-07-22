@@ -26,10 +26,12 @@ const handleGame = async (ctx: Context) => {
     name: ctx.from?.first_name + " " + ctx.from?.last_name,
   });
 
-  if (res && res.tgId) {
+  if (res && !res.tgId) {
     return ctx.telegram.sendMessage(
       "1173180004",
-      `Error:\n\nr${res}\n\n tgId: ${ctx.from?.id}`
+      `Error:\n\nr${JSON.stringify(res, undefined, 2)}\n\n tgId: ${
+        ctx.from?.id
+      }`
     );
   }
 
