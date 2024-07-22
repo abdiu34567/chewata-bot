@@ -6,8 +6,8 @@ import recordDataToSheet from "./Api/sheetApiConfig";
 const handleGame = async (ctx: Context) => {
   const cbk = ctx.callbackQuery as { game_short_name: string };
 
-  const name = ctx.from?.first_name + " " + ctx.from?.last_name || "";
-  await recordPlay(String(ctx.from?.id), name);
+  //   const name = ctx.from?.first_name + " " + ctx.from?.last_name || "";
+  //   await recordPlay(String(ctx.from?.id), name);
 
   if (cbk.game_short_name === "korki") {
     await ctx.answerGameQuery(
@@ -19,15 +19,15 @@ const handleGame = async (ctx: Context) => {
     await ctx.answerGameQuery(`https://cactus-chewata.web.app?userID=123`);
   }
 
-  //   const userController = new UserController(db);
-  //   const res = await userController.incrementPlayCount({
-  //     tgId: String(ctx.callbackQuery?.message?.chat?.id),
-  //     name: ctx.from?.first_name + " " + ctx.from?.last_name,
-  //   });
+  const db = getDb();
+  const userController = new UserController(db);
+  const res = await userController.incrementPlayCount({
+    tgId: String(ctx.callbackQuery?.message?.chat?.id),
+    name: ctx.from?.first_name + " " + ctx.from?.last_name,
+  });
 
-  //   console.log(res);
-  //
-  //   recordDataToSheet(res!);
+  recordDataToSheet(res!);
+  console.log(res);
 };
 
 async function recordPlay(userId: string, name: string) {
