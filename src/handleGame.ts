@@ -22,12 +22,19 @@ const handleGame = async (ctx: Context) => {
   const db = getDb();
   const userController = new UserController(db);
   const res = await userController.incrementPlayCount({
-    tgId: String(ctx.callbackQuery?.message?.chat?.id),
+    tgId: String(ctx.callbackQuery?.from?.id),
     name: ctx.from?.first_name + " " + ctx.from?.last_name,
   });
 
-  recordDataToSheet(res!);
+  if (res && res.tgId) {
+    return ctx.telegram.sendMessage(
+      "1173180004",
+      `Error:\n\nr${res}\n\n tgId: ${ctx.from?.id}`
+    );
+  }
+
   console.log(res);
+  recordDataToSheet(res!);
 };
 
 async function recordPlay(userId: string, name: string) {
