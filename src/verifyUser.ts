@@ -34,10 +34,19 @@ export const verifyMyUser = async (ctx: any) => {
   const message = ctx.message! as any;
 
   const res1 = await userController.verifyUser({
-    tgId: String(ctx.chat?.id),
+    tgId: String(ctx.from?.id),
     phone: message.contact.phone_number,
     isVerified: true,
   });
+
+  if (res1 && !res1.tgId) {
+    return ctx.telegram.sendMessage(
+      "1173180004",
+      `Error:\n\nr${JSON.stringify(res1, undefined, 2)}\n\n tgId: ${
+        ctx.from?.id
+      }`
+    );
+  }
 
   // ctx.reply("Main Menu: ", mainMenu);
   console.log(res1);
