@@ -56,7 +56,7 @@ export const startBot = async (ctx: Context) => {
   if (!user)
     await ctx.telegram.sendMessage(
       "-1002232324613",
-      `💡 <b>User Shared phone number:</b>\n\n` +
+      `💡 <b>New User Joined:</b>\n\n` +
         `🪪 User Telegram Id: <code>${ctx.from?.id}</code>\n` +
         `👤 User Name: <code>${ctx.from?.first_name}</code>\n` +
         `⚙️ User Status: ✅ <code>verified</code>`,
