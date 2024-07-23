@@ -42,6 +42,15 @@ export const startBot = async (ctx: Context) => {
 
     recordDataToSheet(res1!);
     recordDataToSheet(res2!);
+
+    await ctx.telegram.sendMessage(
+      "-1002232324613",
+      `<b>New user joined:</b>\n\n` +
+        `User Telegram Id: ${res2.tgId}\n` +
+        `User Name: ${ctx.from?.first_name}\n` +
+        `User Status: ❌ Unverified`,
+      { parse_mode: "HTML" }
+    );
   }
 
   if (user?.isVerified) {

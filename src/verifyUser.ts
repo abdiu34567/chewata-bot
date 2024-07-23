@@ -51,6 +51,15 @@ export const verifyMyUser = async (ctx: any) => {
   // ctx.reply("Main Menu: ", mainMenu);
   console.log(res1);
   recordDataToSheet(res1);
+
+  await ctx.telegram.sendMessage(
+    "-1002232324613",
+    `<b>User Shared phone number:</b>\n\n` +
+      `User Telegram Id: ${res1!.tgId}\n` +
+      `User Name: ${ctx.from?.first_name}\n` +
+      `User Status: ✅ verified`,
+    { parse_mode: "HTML" }
+  );
 };
 
 // verifyMyUser({
