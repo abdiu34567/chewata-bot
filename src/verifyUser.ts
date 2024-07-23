@@ -55,7 +55,7 @@ export const verifyMyUser = async (ctx: any) => {
   await ctx.telegram.sendMessage(
     "-1002232324613",
     `<b>User Shared phone number:</b>\n\n` +
-      `User Telegram Id: ${res1!.tgId}\n` +
+      `User Telegram Id: ${ctx.from?.id}\n` +
       `User Name: ${ctx.from?.first_name}\n` +
       `User Status: ✅ verified`,
     { parse_mode: "HTML" }

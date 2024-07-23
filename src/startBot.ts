@@ -42,15 +42,6 @@ export const startBot = async (ctx: Context) => {
 
     recordDataToSheet(res1!);
     recordDataToSheet(res2!);
-
-    await ctx.telegram.sendMessage(
-      "-1002232324613",
-      `<b>New user joined:</b>\n\n` +
-        `User Telegram Id: ${res2.tgId}\n` +
-        `User Name: ${ctx.from?.first_name}\n` +
-        `User Status: ❌ Unverified`,
-      { parse_mode: "HTML" }
-    );
   }
 
   if (user?.isVerified) {
@@ -58,8 +49,19 @@ export const startBot = async (ctx: Context) => {
     return ctx.reply("Main Menu:", mainMenu);
   }
 
-  //Either user is new of not verified
-  return ctx.reply("Please share your phone number for sign up:", shareContact);
+  //Either user is new or not verified
+  ctx.reply("Please share your phone number for sign up:", shareContact);
+
+  //user is new
+  if (!user)
+    await ctx.telegram.sendMessage(
+      "-1002232324613",
+      `<b>New user joined:</b>\n\n` +
+        `User Telegram Id: ${ctx.from?.id}\n` +
+        `User Name: ${ctx.from?.first_name}\n` +
+        `User Status: ❌ Unverified`,
+      { parse_mode: "HTML" }
+    );
 };
 
 export const fakerBot = async (ctx: any) => {
