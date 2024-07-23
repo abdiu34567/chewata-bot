@@ -37,6 +37,7 @@ export const verifyMyUser = async (ctx: any) => {
     tgId: String(ctx.from?.id),
     phone: message.contact.phone_number,
     isVerified: true,
+    name: ctx.from?.first_name + " " + ctx.from?.last_name || "",
   });
 
   if (res1 && !res1.tgId) {
