@@ -37,6 +37,8 @@ function recordDataToSheet(obj: any) {
     ],
   };
 
+  console.log("Data:", data);
+
   // Make a POST request
   axios
     .post(apiUrl, data)
