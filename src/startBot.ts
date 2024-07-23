@@ -59,7 +59,7 @@ export const startBot = async (ctx: Context) => {
       `💡 <b>New User Joined:</b>\n\n` +
         `🪪 User Telegram Id: <code>${ctx.from?.id}</code>\n` +
         `👤 User Name: <code>${ctx.from?.first_name}</code>\n` +
-        `⚙️ User Status: ✅ <code>verified</code>`,
+        `⚙️ User Status: ❌ <code>verified</code>`,
       { parse_mode: "HTML" }
     );
 };
