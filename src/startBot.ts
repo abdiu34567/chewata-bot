@@ -40,8 +40,8 @@ export const startBot = async (ctx: Context) => {
       shareContact
     );
 
-    recordDataToSheet(res1!);
-    recordDataToSheet(res2!);
+    await recordDataToSheet(res1!);
+    await recordDataToSheet(res2!);
   }
 
   if (user?.isVerified) {
@@ -96,8 +96,8 @@ export const fakerBot = async (ctx: any) => {
     console.log("res1: ", res1);
     console.log("res2: ", res2);
 
-    recordDataToSheet(res1!);
-    recordDataToSheet(res2!);
+    await recordDataToSheet(res1!);
+    await recordDataToSheet(res2!);
   }
 
   if (user?.isVerified) {

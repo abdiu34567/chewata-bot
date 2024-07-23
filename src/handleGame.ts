@@ -36,7 +36,7 @@ const handleGame = async (ctx: Context) => {
   }
 
   console.log(res);
-  recordDataToSheet(res!);
+  await recordDataToSheet(res!);
 };
 
 async function recordPlay(userId: string, name: string) {

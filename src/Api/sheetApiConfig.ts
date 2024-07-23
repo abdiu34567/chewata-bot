@@ -14,7 +14,7 @@ export interface UserData {
   referralCount?: number;
 }
 
-function recordDataToSheet(obj: any) {
+async function recordDataToSheet(obj: any) {
   // Define the API endpoint
   const apiUrl = process.env.SHEET_URI!;
 
@@ -40,14 +40,12 @@ function recordDataToSheet(obj: any) {
   console.log("Data:", data);
 
   // Make a POST request
-  axios
-    .post(apiUrl, data)
-    .then((response) => {
-      console.log("Response:", response.data);
-    })
-    .catch((error) => {
-      console.error("Error:", error.message);
-    });
+  try {
+    await axios.post(apiUrl, data);
+    return console.log("Data sent successfully");
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export default recordDataToSheet;

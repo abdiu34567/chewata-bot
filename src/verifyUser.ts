@@ -50,7 +50,7 @@ export const verifyMyUser = async (ctx: any) => {
   }
 
   // ctx.reply("Main Menu: ", mainMenu);
-  recordDataToSheet(res1);
+  await recordDataToSheet(res1);
 
   await ctx.telegram.sendMessage(
     "-1002232324613",
