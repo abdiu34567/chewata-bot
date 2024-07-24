@@ -77,6 +77,14 @@ export class UserController {
         { tgId: tgId },
         {
           $set: verifyUser,
+          $setOnInsert: {
+            dateJoined: new Date(),
+            referralCount: 0,
+            playCount: 0,
+            language: "en",
+            credits: 100,
+            korkis: 0,
+          },
         },
         {
           returnDocument: "after",

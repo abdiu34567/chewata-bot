@@ -4,7 +4,6 @@ import { connectToServer, getDb } from "./db/config";
 import { UserController } from "./db";
 import recordDataToSheet, { UserData } from "./Api/sheetApiConfig";
 import { text } from "stream/consumers";
-import { verifyMyUser } from "./verifyUser";
 import { PollController } from "./db/polls";
 
 export const startBot = async (ctx: Context) => {
