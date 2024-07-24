@@ -25,7 +25,7 @@ const handleGame = async (ctx: Context) => {
     );
   }
 
-  await recordDataToSheet(res!);
+  recordDataToSheet(res!);
 
   if (cbk.game_short_name === "korki") {
     await ctx.answerGameQuery(
