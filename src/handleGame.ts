@@ -9,6 +9,13 @@ const handleGame = async (ctx: Context) => {
   //   const name = ctx.from?.first_name + " " + ctx.from?.last_name || "";
   //   await recordPlay(String(ctx.from?.id), name);
 
+  const db = getDb();
+  const userController = new UserController(db);
+  const res = await userController.incrementPlayCount({
+    tgId: String(ctx.from?.id),
+    name: ctx.from?.first_name + " " + ctx.from?.last_name,
+  });
+
   if (cbk.game_short_name === "korki") {
     await ctx.answerGameQuery(
       `https://chewata-web.vercel.app/roulette/korki/?user_id=${100}`
@@ -18,13 +25,6 @@ const handleGame = async (ctx: Context) => {
   if (cbk.game_short_name === "levelup") {
     await ctx.answerGameQuery(`https://cactus-chewata.web.app?userID=123`);
   }
-
-  const db = getDb();
-  const userController = new UserController(db);
-  const res = await userController.incrementPlayCount({
-    tgId: String(ctx.from?.id),
-    name: ctx.from?.first_name + " " + ctx.from?.last_name,
-  });
 
   if (!res || (res && !res.tgId)) {
     return ctx.telegram.sendMessage(
