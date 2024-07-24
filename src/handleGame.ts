@@ -16,16 +16,6 @@ const handleGame = async (ctx: Context) => {
     name: ctx.from?.first_name + " " + ctx.from?.last_name,
   });
 
-  if (cbk.game_short_name === "korki") {
-    await ctx.answerGameQuery(
-      `https://chewata-web.vercel.app/roulette/korki/?user_id=${100}`
-    );
-  }
-
-  if (cbk.game_short_name === "levelup") {
-    await ctx.answerGameQuery(`https://cactus-chewata.web.app?userID=123`);
-  }
-
   if (!res || (res && !res.tgId)) {
     return ctx.telegram.sendMessage(
       "1173180004",
@@ -35,7 +25,17 @@ const handleGame = async (ctx: Context) => {
     );
   }
 
-  await recordDataToSheet(res!);
+  recordDataToSheet(res!);
+
+  if (cbk.game_short_name === "korki") {
+    await ctx.answerGameQuery(
+      `https://chewata-web.vercel.app/roulette/korki/?user_id=${100}`
+    );
+  }
+
+  if (cbk.game_short_name === "levelup") {
+    await ctx.answerGameQuery(`https://cactus-chewata.web.app?userID=123`);
+  }
 };
 
 async function recordPlay(userId: string, name: string) {
