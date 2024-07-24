@@ -169,6 +169,7 @@ export class UserController {
       return result;
     } catch (e: any) {
       console.log(e.message);
+      return e.message;
       return null;
     }
   }
