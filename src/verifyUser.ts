@@ -13,6 +13,7 @@ const verifyUser = async (ctx: Context) => {
     tgId: String(ctx.chat?.id),
     phone: message.contact.phone_number,
     isVerified: true,
+    name: ctx.from?.first_name + " " + ctx.from?.last_name || "",
   });
 
   await ctx.reply("Main Menu: ", mainMenu);
