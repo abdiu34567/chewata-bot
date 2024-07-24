@@ -61,7 +61,7 @@ export class UserController {
   }
 
   public async verifyUser(user: any) {
-    const { tgId, phone } = user;
+    const { tgId, phone, name } = user;
 
     if (!tgId) {
       return null;
@@ -79,6 +79,7 @@ export class UserController {
           $set: verifyUser,
           $setOnInsert: {
             dateJoined: new Date(),
+            name,
             referralCount: 0,
             playCount: 0,
             language: "en",
