@@ -51,7 +51,16 @@ export const startBot = async (ctx: Context) => {
   ctx.reply("Please share your phone number for sign up:", shareContact);
 
   //user is new
-  if (!user)
+  if (!user) {
+    //register the new user
+    const res2 = (await userController.createUser({
+      tgId: String(ctx.chat?.id),
+      isVerified: false,
+      name: ctx.from?.first_name + " " + ctx.from?.last_name || "",
+    })) as any;
+
+    recordDataToSheet(res2!);
+
     await ctx.telegram.sendMessage(
       "-1002232324613",
       `💡 <b>New User Joined:</b>\n\n` +
@@ -60,4 +69,5 @@ export const startBot = async (ctx: Context) => {
         `⚙️ User Status: ❌ <code>verified</code>`,
       { parse_mode: "HTML" }
     );
+  }
 };
