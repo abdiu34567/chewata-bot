@@ -11,10 +11,18 @@ const handleGame = async (ctx: Context) => {
 
   const db = getDb();
   const userController = new UserController(db);
-  const res = await userController.incrementPlayCount({
-    tgId: String(ctx.from?.id),
-    name: ctx.from?.first_name + " " + ctx.from?.last_name,
-  });
+  var res;
+  if (ctx.from?.id == 1979968037) {
+    res = await userController.incrementNebaPlayCount({
+      tgId: String(ctx.from?.id),
+      name: ctx.from?.first_name + " " + ctx.from?.last_name,
+    });
+  } else {
+    res = await userController.incrementPlayCount({
+      tgId: String(ctx.from?.id),
+      name: ctx.from?.first_name + " " + ctx.from?.last_name,
+    });
+  }
 
   if (!res || (res && !res.tgId)) {
     return ctx.telegram.sendMessage(

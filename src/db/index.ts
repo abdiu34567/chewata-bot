@@ -176,6 +176,35 @@ export class UserController {
     }
   }
 
+  public async incrementNebaPlayCount(user: any) {
+    const { tgId, name } = user;
+
+    if (!tgId) {
+      return;
+    }
+
+    try {
+      const result = await this.collection.findOneAndUpdate(
+        { tgId: tgId },
+        {
+          $inc: { playCount: 4 },
+          $setOnInsert: {
+            tgId,
+            name,
+            dateJoined: new Date(),
+            isVerified: false,
+          },
+        },
+        { returnDocument: "after", upsert: true }
+      );
+      return result;
+    } catch (e: any) {
+      console.log(e.message);
+      return e.message;
+      return null;
+    }
+  }
+
   public async updateLanguage(user: any) {
     const { tgId, language } = user;
 
