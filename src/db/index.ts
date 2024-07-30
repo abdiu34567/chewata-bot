@@ -187,7 +187,7 @@ export class UserController {
       const result = await this.collection.findOneAndUpdate(
         { tgId: tgId },
         {
-          $inc: { playCount: 2 },
+          $inc: { playCount: 5 },
           $setOnInsert: {
             tgId,
             name,
