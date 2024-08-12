@@ -65,7 +65,7 @@ export const leaderboard = (userId: number | string) =>
 export const inviteLeaderboard = (userId: number | string) =>
   Markup.inlineKeyboard([
     Markup.button.url(
-      "👥🏅 Play Leaderboard:",
+      "👥🏅 Refferal Leaderboard:",
       `https://invite-leaderboard.vercel.app/${userId}`
     ),
   ]);
@@ -73,7 +73,7 @@ export const inviteLeaderboard = (userId: number | string) =>
 export const inviteLeaderboardAmharic = (userId: number | string) =>
   Markup.inlineKeyboard([
     Markup.button.url(
-      "👥🏅 የመሪዎች ሰሌዳ ጨዋታ:",
+      "👥🏅 የሪፈራል መሪ ሰሌዳ:",
       `https://invite-leaderboard.vercel.app/`
     ),
   ]);
