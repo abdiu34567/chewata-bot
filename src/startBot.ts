@@ -34,12 +34,15 @@ export const startBot = async (ctx: Context) => {
 
     //redirect the new user to signup page
     await ctx.reply(
-      "Please share your phone number for sign up:",
+      `Register using the button below ☎️\n\n` +
+        `የታችኛውን ምልክት በመጫን የሃውስ ኦፍ ጨዋታ ቤተሰብ ይቀላቀሉ። ☎️`,
       shareContact
     );
 
     await recordDataToSheet(res1!);
     await recordDataToSheet(res2!);
+
+    return;
   }
 
   if (user?.isVerified) {
@@ -48,10 +51,14 @@ export const startBot = async (ctx: Context) => {
   }
 
   //Either user is new or not verified
-  ctx.reply("Please share your phone number for sign up:", shareContact);
+  ctx.reply(
+    `Register using the button below ☎️\n\n` +
+      `የታችኛውን ምልክት በመጫን የሃውስ ኦፍ ጨዋታ ቤተሰብ ይቀላቀሉ። ☎️`,
+    shareContact
+  );
 
   //user is new
-  if (!user) {
+  if (!inviter && !user) {
     //register the new user
     const res2 = (await userController.createUser({
       tgId: String(ctx.chat?.id),

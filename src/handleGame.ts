@@ -11,18 +11,10 @@ const handleGame = async (ctx: Context) => {
 
   const db = getDb();
   const userController = new UserController(db);
-  var res;
-  if (ctx.from?.id == 1979968037) {
-    res = await userController.incrementNebaPlayCount({
-      tgId: String(ctx.from?.id),
-      name: ctx.from?.first_name + " " + ctx.from?.last_name,
-    });
-  } else {
-    res = await userController.incrementPlayCount({
-      tgId: String(ctx.from?.id),
-      name: ctx.from?.first_name + " " + ctx.from?.last_name,
-    });
-  }
+  const res = await userController.incrementPlayCount({
+    tgId: String(ctx.from?.id),
+    name: ctx.from?.first_name + " " + ctx.from?.last_name,
+  });
 
   if (!res || (res && !res.tgId)) {
     return ctx.telegram.sendMessage(
@@ -123,70 +115,5 @@ async function recordPlay(userId: string, name: string) {
     }
   }
 }
-
-// Function to record a play and calculate score
-// async function recordPlay(tgId: string, name: string) {
-//   const now = new Date();
-//   const minTimeBetweenPlays = 5 * 60 * 1000; // 5 minutes in milliseconds
-//   //count total play clicks
-//   const db = getDb();
-//   const collection = db.collection("users");
-
-//   // Find the player's document
-//   const player = await collection.findOne({ tgId });
-
-//   if (!player) {
-//     // New player, create a new document
-//     await collection.insertOne({
-//       tgId,
-//       name,
-//       playCount: 1,
-//       lastPlayTime: now,
-//       score: 1,
-//     });
-//     return { playCount: 1, score: 1 };
-//   } else {
-//     const timeSinceLastPlay = player.lastPlayTime
-//       ? now.getTime() - new Date(player.lastPlayTime).getTime()
-//       : Infinity;
-//     const newPlayCount = player.playCount + 1;
-//     console.log("timeSinceLastPlay: ", timeSinceLastPlay);
-//     console.log("minTimeBetweenPlays: ", minTimeBetweenPlays);
-
-//     if (timeSinceLastPlay >= minTimeBetweenPlays) {
-//       // Calculate weighted score increment
-//       const weightedScoreIncrement = Math.min(
-//         Math.floor(timeSinceLastPlay / (15 * 60 * 1000)),
-//         8
-//       ); // Cap at 2 hours (8 * 15 minutes)
-
-//       // Update player stats
-//       const updatedPlayer = await collection.findOneAndUpdate(
-//         { tgId },
-//         {
-//           $inc: {
-//             playCount: 1,
-//             score: weightedScoreIncrement,
-//           },
-//           $set: { lastPlayTime: now },
-//         },
-//         { returnDocument: "after" }
-//       );
-
-//       return {
-//         playCount: updatedPlayer!.playCount,
-//         score: updatedPlayer!.score,
-//       };
-//     } else {
-//       // Only update playCount if the cooldown period hasn't passed
-//       await collection.updateOne({ tgId }, { $inc: { playCount: 1 } });
-
-//       return {
-//         playCount: newPlayCount,
-//         score: player.score,
-//       };
-//     }
-//   }
-// }
 
 export default handleGame;

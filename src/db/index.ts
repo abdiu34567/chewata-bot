@@ -9,18 +9,7 @@ export class UserController {
   }
 
   public async createUser(user: any) {
-    const {
-      tgId,
-      name,
-      phone,
-      credits,
-      korkis,
-      language,
-      referralCount,
-      playCount,
-      invitedBy,
-      isVerified,
-    } = user;
+    const { tgId, name, phone, invitedBy } = user;
 
     if (!tgId) {
       return null;
@@ -40,6 +29,7 @@ export class UserController {
             tgId,
             dateJoined: new Date(),
             invitedBy,
+            new_referral: 0,
             referralCount: 0,
             playCount: 0,
             isVerified: false,
@@ -81,6 +71,7 @@ export class UserController {
             dateJoined: new Date(),
             name,
             referralCount: 0,
+            new_referral: 0,
             playCount: 0,
             language: "en",
             credits: 100,
@@ -110,8 +101,9 @@ export class UserController {
       const result = await this.collection.findOneAndUpdate(
         { tgId: tgId },
         {
-          $inc: { referralCount: 1 },
+          $inc: { new_referral: 1 },
           $setOnInsert: {
+            referralCount: 1,
             tgId: tgId,
             name,
             dateJoined: new Date(),
@@ -159,35 +151,6 @@ export class UserController {
         { tgId: tgId },
         {
           $inc: { playCount: 1 },
-          $setOnInsert: {
-            tgId,
-            name,
-            dateJoined: new Date(),
-            isVerified: false,
-          },
-        },
-        { returnDocument: "after", upsert: true }
-      );
-      return result;
-    } catch (e: any) {
-      console.log(e.message);
-      return e.message;
-      return null;
-    }
-  }
-
-  public async incrementNebaPlayCount(user: any) {
-    const { tgId, name } = user;
-
-    if (!tgId) {
-      return;
-    }
-
-    try {
-      const result = await this.collection.findOneAndUpdate(
-        { tgId: tgId },
-        {
-          $inc: { playCount: 2 },
           $setOnInsert: {
             tgId,
             name,

@@ -71,7 +71,8 @@ connectToServer()
       var user = await userController.queryUser({ tgId: String(ctx.chat?.id) });
       if (!user || !user?.phone) {
         return ctx.reply(
-          "Please share your phone number for sign up:",
+          `Register using the button below ☎️\n\n` +
+            `የታችኛውን ምልክት በመጫን የሃውስ ኦፍ ጨዋታ ቤተሰብ ይቀላቀሉ። ☎️`,
           shareContact
         );
       }
