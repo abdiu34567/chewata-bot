@@ -17,50 +17,27 @@ async function migrateNewUsers() {
     console.log("Connected to MongoDB");
 
     const db = client.db("chewata");
-    const usersCollection = db.collection("users");
-    const pollsCollection = db.collection("polls");
 
-    // Get all unique tgIds from the polls collection
-    const pollUsers = await pollsCollection.distinct("tgId");
+    // Get the users collection
+    const users = db.collection("users");
+    const transactions = db.collection("transactions");
 
-    // Get all existing tgIds from the users collection
-    const existingUsers = await usersCollection.distinct("tgId");
+    // Find all users
+    const allUsers = await users.find({}).toArray();
 
-    // Find new users that are in polls but not in users
-    const newUsers = pollUsers.filter((tgId) => !existingUsers.includes(tgId));
-
-    if (newUsers.length === 0) {
-      console.log("No new users to migrate.");
-      return;
-    }
-
-    console.log(`Found ${newUsers.length} new users to migrate.`);
-    return 0;
-    // Prepare bulk operation
-    const bulkOps = newUsers.map((tgId) => ({
-      insertOne: {
-        document: {
-          tgId: tgId,
-          playCount: 0,
-          lastPlayTime: null,
-          score: 0,
-          name: "",
-          phone: "",
-          credits: 100,
-          korkis: 0,
-          language: "en",
-          isVerified: false,
-          referralCount: 0,
-          // Add any other default fields you want for new users
-        },
-      },
+    // Transaction records to insert
+    let transactionRecords = allUsers.map((user) => ({
+      userId: user.tgId, // Assuming tgId is the field you want to use as userId
+      amount: 25,
+      type: "bonus",
+      status: "completed",
+      payload: "well done",
+      createdAt: new Date("2024-08-26T10:23:24.784Z"), // Using a fixed date as per your example
     }));
-    // return console.log(JSON.stringify(bulkOps, undefined, 2));
 
-    // Execute bulk operation
-    const result = await usersCollection.bulkWrite(bulkOps);
-
-    console.log(`Successfully migrated ${result.insertedCount} new users.`);
+    // Insert records into the transactions collection
+    await transactions.insertMany(transactionRecords);
+    console.log("Bonus records inserted");
   } catch (error) {
     console.error("An error occurred during migration:", error);
   } finally {

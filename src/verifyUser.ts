@@ -1,7 +1,7 @@
 import { Context } from "telegraf";
 import { connectToServer, getDb } from "./db/config";
 import { UserController } from "./db";
-import { mainMenu } from "./keyboards";
+import { bothLanguage, mainMenu } from "./keyboards";
 import recordDataToSheet from "./Api/sheetApiConfig";
 
 const verifyUser = async (ctx: Context) => {
@@ -16,7 +16,13 @@ const verifyUser = async (ctx: Context) => {
     name: ctx.from?.first_name + " " + ctx.from?.last_name || "",
   });
 
-  await ctx.reply("Main Menu: ", mainMenu);
+  await ctx.reply(
+    "Welcome to house of Chewata.\n\n" +
+      "You have been rewarded 25 birr for registering to our bot",
+    bothLanguage
+  );
+
+  //   await ctx.reply("Main Menu: ", mainMenu);
 
   recordDataToSheet(res);
 

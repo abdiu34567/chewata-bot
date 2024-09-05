@@ -2,6 +2,7 @@ import { Context } from "telegraf";
 import { getDb } from "./db/config";
 import { UserController } from "./db";
 import recordDataToSheet from "./Api/sheetApiConfig";
+import { prize } from "./keyboards";
 
 const handleGame = async (ctx: Context) => {
   const cbk = ctx.callbackQuery as { game_short_name: string };
@@ -115,5 +116,11 @@ async function recordPlay(userId: string, name: string) {
     }
   }
 }
+
+export const sendGames = async (ctx: Context) => {
+  console.log("here");
+  const message = `Select a game:`;
+  await ctx.reply(message, prize);
+};
 
 export default handleGame;

@@ -195,4 +195,99 @@ export class UserController {
       return null;
     }
   }
+
+  async getUserDetailsWithTransactions(tgId: string) {
+    const pipeline = [
+      {
+        $match: { tgId: tgId },
+      },
+      {
+        $lookup: {
+          from: "transactions",
+          localField: "tgId",
+          foreignField: "userId",
+          as: "transactions",
+        },
+      },
+      {
+        $project: {
+          full_name: 1,
+          phone: 1,
+          totalDeposited: {
+            $sum: {
+              $map: {
+                input: {
+                  $filter: {
+                    input: "$transactions",
+                    as: "transaction",
+                    cond: {
+                      $and: [
+                        { $eq: ["$$transaction.type", "deposit"] },
+                        { $eq: ["$$transaction.status", "completed"] },
+                      ],
+                    },
+                  },
+                },
+                as: "transaction",
+                in: "$$transaction.amount",
+              },
+            },
+          },
+          totalBonus: {
+            $sum: {
+              $map: {
+                input: {
+                  $filter: {
+                    input: "$transactions",
+                    as: "transaction",
+                    cond: {
+                      $and: [
+                        { $eq: ["$$transaction.type", "bonus"] },
+                        { $eq: ["$$transaction.status", "completed"] },
+                      ],
+                    },
+                  },
+                },
+                as: "transaction",
+                in: "$$transaction.amount",
+              },
+            },
+          },
+          totalWithdrawn: {
+            $sum: {
+              $map: {
+                input: {
+                  $filter: {
+                    input: "$transactions",
+                    as: "transaction",
+                    cond: {
+                      $and: [
+                        { $eq: ["$$transaction.type", "withdrawal"] },
+                        { $eq: ["$$transaction.status", "completed"] },
+                      ],
+                    },
+                  },
+                },
+                as: "transaction",
+                in: "$$transaction.amount",
+              },
+            },
+          },
+        },
+      },
+      {
+        $addFields: {
+          totalBalance: {
+            $subtract: [
+              { $add: ["$totalDeposited", "$totalBonus"] },
+              "$totalWithdrawn",
+            ],
+          },
+        },
+      },
+    ];
+
+    const result = await this.collection.aggregate(pipeline).toArray();
+    return result[0];
+  }
 }

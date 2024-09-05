@@ -10,36 +10,11 @@ import {
   mainMenuAmharic,
 } from "./keyboards";
 
-export const translate = async (ctx: Context) => {
-  const message = ctx.message as { text: string };
-  const text = message?.text;
+import crypto from "crypto";
 
-  // if(language === "am"){
-  // return translations[]
-  // }
-};
-
-export const deleter = async (ctx: Context, start: number) => {
-  // let start = 51542;
-  let end = 50;
-  let decrement = 1; // Adjust this to change the step size if needed
-
-  let array = [];
-
-  for (let i = start; i >= start - end; i -= decrement) {
-    array.push(i);
-  }
-
-  console.log(array);
-
-  const last = array[array.length - 1];
-  // console.log(array[array.length - 1]);
-
-  const res = await ctx.deleteMessages(array);
-  console.log("response: ", res);
-  console.log(`next ${start}: `, start - end);
-  return start - end;
-};
+export function generateSecureToken(): string {
+  return crypto.randomBytes(16).toString("hex");
+}
 
 export const getLanguage = async (tgId: string) => {
   const db = getDb();
