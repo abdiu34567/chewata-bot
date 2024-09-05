@@ -2,6 +2,7 @@ import { Context } from "telegraf";
 import { getDb } from "./db/config";
 import { UserController } from "./db";
 import { TransactionController } from "./db/transaction";
+import { shareContact } from "./keyboards";
 
 export const loadUserAccount = async (ctx: Context) => {
   const first_name = ctx.from?.first_name;
@@ -13,6 +14,14 @@ export const loadUserAccount = async (ctx: Context) => {
   const user = await userController.getUserDetailsWithTransactions(
     String(ctx.from?.id)
   );
+
+  if (!user) {
+    return await ctx.reply(
+      `Register using the button below ☎️\n\n` +
+        `የታችኛውን ምልክት በመጫን የሃውስ ኦፍ ጨዋታ ቤተሰብ ይቀላቀሉ። ☎️`,
+      shareContact
+    );
+  }
 
   ctx.replyWithHTML(
     `<b>Your account details:</b>\n\n` +

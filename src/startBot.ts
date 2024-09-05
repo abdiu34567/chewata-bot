@@ -52,7 +52,7 @@ export const startBot = async (ctx: Context) => {
   }
 
   //Either user is new or not verified
-  ctx.reply(
+  await ctx.reply(
     `Register using the button below ☎️\n\n` +
       `የታችኛውን ምልክት በመጫን የሃውስ ኦፍ ጨዋታ ቤተሰብ ይቀላቀሉ። ☎️`,
     shareContact
