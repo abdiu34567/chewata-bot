@@ -3,6 +3,7 @@ import { mainMenu, shareContact } from "./keyboards";
 import { connectToServer, getDb } from "./db/config";
 import { UserController } from "./db";
 import recordDataToSheet, { UserData } from "./Api/sheetApiConfig";
+import { TransactionController } from "./db/transaction";
 
 export const startBot = async (ctx: Context) => {
   //check if user is here for the first time
@@ -59,6 +60,11 @@ export const startBot = async (ctx: Context) => {
 
   //user is new
   if (!inviter && !user) {
+    //add bonus for all new users
+    const db = getDb();
+    const transaction = new TransactionController(db);
+    transaction.addBonus(String(ctx.chat?.id), 25, "well done");
+
     //register the new user
     const res2 = (await userController.createUser({
       tgId: String(ctx.chat?.id),
