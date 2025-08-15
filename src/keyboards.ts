@@ -37,6 +37,10 @@ export const invite = (userId: number | string) =>
     ),
   ]);
 
+export const sendClimateGame = Markup.inlineKeyboard([
+  Markup.button.url("Play Climate", "https://climate-app-react.vercel.app/"),
+]);
+
 export const sendGameChewata = Markup.inlineKeyboard([
   Markup.button.game("Play Chewata"),
 ]);

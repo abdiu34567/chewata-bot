@@ -1,10 +1,10 @@
 import { Context } from "telegraf";
-import { sendGameChewata, sendGameLevelUp } from "./keyboards";
+import { sendClimateGame, sendGameChewata, sendGameLevelUp } from "./keyboards";
 
 const playGame = async (ctx: Context) => {
   //dev
-  //  await ctx.replyWithGame("chewata", sendGameLevelUp);
-  // ctx.replyWithGame("chewata", sendGameChewata)
+  //await ctx.replyWithGame("chewata", sendGameLevelUp);
+  await ctx.replyWithGame("Climate", sendClimateGame);
 
   //prod
   await ctx.replyWithGame("levelup", sendGameLevelUp);
