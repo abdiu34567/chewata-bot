@@ -155,7 +155,7 @@ connectToServer()
 
     bot.launch({
       webhook: {
-        domain: "https://chewata-bot-rv7c.vercel.app/",
+        domain: "https://chewata-bot.vercel.app/",
       },
     });
 
